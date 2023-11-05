@@ -1,0 +1,23 @@
+/* NavBarStyles.css */
+
+.navbar {
+    background-color: #ffffff; /* Background color */
+    border-bottom: 1px solid #e5e5e5; /* Bottom border */
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem; /* Font size of the brand */
+  }
+  
+  .nav-item {
+    margin-right: 10px; /* Margin between nav items */
+  }
+  
+  .nav-link {
+    color: #000000; /* Link color */
+  }
+  
+  .nav-link:hover {
+    color: #007bff; /* Link color on hover */
+  }
+  
