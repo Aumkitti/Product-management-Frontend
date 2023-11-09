@@ -1,35 +1,47 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
-import "bootstrap/dist/css/bootstrap.min.css"
-import "./Navbar.css"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Navbar.css";
 
+const Navbar = () => {
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
+          Product Management
+        </Link>
 
-const NavBar = () => {
-    const [ user, setUser] = useState()
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link className="navbar-brand" to="/">Product Manage</Link>
-                    <li className="nav-item">
-                        <Link className="nav-link " to="/search">Search</Link>
-                    </li>
+        <button className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
 
-                    
-                    <li className="nav-item">
-                        <Link className="nav-link " to="/signIn">SignIn</Link>
-                    </li>
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-                    <li className="nav-item">
-                        <Link className="nav-link " to="/signUp">SignUp</Link>
-                    </li>
-                   
-                    
-                        <li className="nav-item">
-                            <Link className="nav-link " to="/Logout">Logout</Link>
-                        </li>
-                
-        </nav>
-    )
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav me-auto">
+            
+            <li className="nav-item">
+              <Link className="nav-link" to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/add">Add</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/signin">Sign In</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/signup">Sign Up</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 }
 
-export default NavBar;
+export default Navbar;
