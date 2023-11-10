@@ -25,7 +25,8 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/product/:id/edit" element={<EditProduct />} />
+        <Route path="/product/:productId/edit" element={<EditProduct />} />
+
       </Routes>
     </BrowserRouter>
   );

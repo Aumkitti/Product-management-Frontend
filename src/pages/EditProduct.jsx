@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { VITE_BASE_URL } from "../App";
 
 const EditProduct = () => {
     const { productId } = useParams();
@@ -20,8 +21,7 @@ const EditProduct = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-              const res = await axios.get(`${VITE_BACKEND_URL}/api/product/${id}`);
-
+                const res = await axios.get(`${VITE_BASE_URL}/api/products/${productId}`);
                 setProduct(res.data);
             } catch (error) {
                 console.error(error);
@@ -33,16 +33,19 @@ const EditProduct = () => {
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(
-                `${import.meta.env.VITE_BACKEND_URL}/api/products/${productId}`,
-                product
-            );
-            navigate('/');
+          console.log('Updating product with ID:', productId); 
+          await axios.put(
+            `${VITE_BASE_URL}/api/products/${productId}`,
+            product
+          );
+          navigate('/');
         } catch (error) {
-            console.error(error);
-            setError(true);
+          console.error(error);
+          setError(true);
         }
-    };
+      };
+      
+
 
     return (
         <div className="container">

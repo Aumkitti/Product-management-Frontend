@@ -5,44 +5,36 @@ import { VITE_BASE_URL } from '../App';
 
 const Signup = () => {
   const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    username: '',
+    email: '',
+    password: '',
+    confirmpassword:'',
   });
-  const [error, setError] = useState(null);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+  const navigate = useNavigate();
+  const [error, setError] = useState(false);
+  const [ErrorMessage, setErrorMessage] = useState({message: ""});
+  const handleChange = (e) => {
+    setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${VITE_BASE_URL}/api/signup`, user);
-  
-      if (response.status === 200) {
-        console.log('Signup successful!', response.data);
-        // Optionally, you can redirect the user or show a success message.
+      if (user.confirmpassword === user.password) {
+        const register = await AuthService.register
+        (user.username, user.email, user.password);
+        navigate("/signin");
       } else {
-        console.error('Error signing up:', response.data);
-        setError(response.data.error || 'Signup failed');
+        setError(true);
+        setErrorMessage({ message: "Failed Password mis"})
       }
+      // Assuming successful signup, you can navigate to a success page or login page.
+     
     } catch (error) {
-      console.error('Error signing up:', error);
-      setError(error.message);
+      console.error(error);
+      setError(true);
+      setErrorMessage(error.response.data);
     }
-  };
-
-  const handleClear = () => {
-    setUser({
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
-    });
-    setError(null);
   };
 
   return (

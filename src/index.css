@@ -47,13 +47,15 @@ body {
   margin: 0.5rem 0;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  border: 1px solid #000000; /* Light border */
+  border: 1px solid #cbcaca; /* Light border */
   border-radius: 4px;
 }
 
 .form button {
-  background-color: #000000; /* Blue button */
-  color: #000000;
+  background-color: #009218; /* Blue button */
+  color: #ffffff;
+  height: 37px;
+  padding: 0.3rem 1.3rem;
   cursor: pointer;
   transition: background-color 0.2s;
 }
