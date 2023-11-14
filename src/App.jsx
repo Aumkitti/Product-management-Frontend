@@ -13,10 +13,12 @@ import AdminRoute from './pages/AdminRoute';
 import Layout from './components/Layout';
 import ProductPage from './pages/ProductPage';
 import EditProduct from './pages/EditProduct';
+import { AuthProvider } from './context/AuthContext'
 
 
 function App() {
   return (
+    <AuthProvider>
     <BrowserRouter>
       <NavBar />
       <Routes>
@@ -29,6 +31,7 @@ function App() {
 
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
   );
 }
 export const VITE_BASE_URL = 'http://localhost:3000';

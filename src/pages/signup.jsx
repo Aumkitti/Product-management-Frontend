@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { VITE_BASE_URL } from '../App';
+import { useNavigate } from 'react-router-dom';
+import AuthService from '../service/auth.service';
+
+
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -36,11 +40,20 @@ const Signup = () => {
       setErrorMessage(error.response.data);
     }
   };
+  const handleClear = (e) => {
+    setUser({
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    })
+    setError(false);
+  };
 
   return (
     <div className="container bg-white rounded-lg shadow-lg w-full md:w-96 mx-auto p-4 md:p-7 my-10">
       <div className="form-container items-center justify-center p-4">
-        <form className="w-full max-w-md" onSubmit={handleSubmit}>
+        <form className="w-full max-w-md" onSubmit={handleSignup}>
           <h1 className="text-2xl font-bold text-center mb-4">Register</h1>
 
           <span className="text-sm text-center mt-4">Please fill in information</span>
@@ -49,7 +62,7 @@ const Signup = () => {
             type="text"
             name="username"
             value={user.username}
-            onChange={handleInputChange}
+            onChange={handleChange}
             placeholder="Username"
             className="input input-info my-3 w-full"
           />
@@ -58,7 +71,7 @@ const Signup = () => {
             type="email"
             name="email"
             value={user.email}
-            onChange={handleInputChange}
+            onChange={handleChange}
             placeholder="Email"
             className="input input-info my-3 w-full"
           />
@@ -67,24 +80,22 @@ const Signup = () => {
             type="password"
             name="password"
             value={user.password}
-            onChange={handleInputChange}
+            onChange={handleChange}
             placeholder="Password"
             className="input input-info my-3 w-full"
           />
           <br/>
           <input
             type="password"
-            name="confirmPassword"
-            value={user.confirmPassword}
-            onChange={handleInputChange}
+            name="confirmpassword"
+            value={user.confirmpassword}
+            onChange={handleChange}
             placeholder="Confirm Password"
             className="input input-info my-3 w-full"
           />
           <br/>
 
-          <button type="submit" className="btn btn-info mt-4 w-full">
-            Sign Up
-          </button>
+          <button className="btn" onClick={handleSignup}>SignUp</button>
           <br/>
           <Link to="" className="btn btn-danger w-full mt-2" onClick={handleClear}>Cancel</Link>
 

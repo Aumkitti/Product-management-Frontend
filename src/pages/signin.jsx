@@ -1,8 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import AuthService from '../service/auth.service';
+import { useAuthContext } from '../context/AuthContext';
+import Swal from 'sweetalert2';
 
 
 const Signin = () => {
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+  const { login } = useAuthContext() || {};
+  const [error, setError] = useState();
+
+  const handleChange = (e) => {
+    setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
   const handleClear = (e) => {
     setUser({
@@ -10,6 +24,26 @@ const Signin = () => {
       password: "",
     })
     setError(false);
+  }
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      const currentUser = await AuthService.login(user.username, user.password);
+      login(currentUser)
+      Swal.fire({
+        title: "Login successful!",
+        icon: "success"
+      });
+      navigate("/")
+    } catch (error) {
+      Swal.fire({
+        title: "Error login!",
+        icon: "error"
+      });
+      console.log(error);
+      setError(true);
+    }
   }
 
   return (
@@ -21,18 +55,24 @@ const Signin = () => {
           
           <span className="text-sm text-center mt-4"></span>
           <input
-            type="email"
-            placeholder="Email"
-            className="input input-success my-3 w-full"
-          />
+              type="text"
+              placeholder="username"
+              name="username"
+              value={user.username}
+              onChange={handleChange}
+              className="input input-warning  my-4 w-full"
+            />
           <br/>
           <input
-            type="password"
-            placeholder="Password"
-            className="input input-success my-3 w-full"
-          />
+              type="password"
+              name="password"
+              placeholder='password'
+              value={user.password}
+              onChange={handleChange}  
+              className="input input-warning  my-4 w-full"
+            />
           <br></br>
-          <button className="btn btn-success mt-4 w-full">
+          <button className="btn btn-warning" onClick={handleClick}>
             login
           </button>
             <br></br>
