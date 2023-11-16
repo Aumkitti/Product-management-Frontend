@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthService from '../service/auth.service';
 import { useAuthContext } from '../context/AuthContext';
-import Swal from 'sweetalert2';
 
 
 const Signin = () => {
@@ -31,20 +30,16 @@ const Signin = () => {
     try {
       const currentUser = await AuthService.login(user.username, user.password);
       login(currentUser)
-      Swal.fire({
-        title: "Login successful!",
-        icon: "success"
-      });
-      navigate("/")
+      // สมมติว่าลงชื่อเข้าใช้สําเร็จ คุณสามารถไปที่แดชบอร์ดหรือหน้าโปรไฟล์ได้
+      navigate("/Profile") 
+      //ส่งคําขอ POST ไปยังตําแหน่งข้อมูลการลงชื่อเข้าใช้ด้วยข้อมูลประจําตัวของผู้ใช้ (อีเมลและรหัสผ่าน)
+      await axios.post(`${URL}/signin`, user);
+      
     } catch (error) {
-      Swal.fire({
-        title: "Error login!",
-        icon: "error"
-      });
-      console.log(error);
+      console.error(error);
       setError(true);
     }
-  }
+  };
 
   return (
     

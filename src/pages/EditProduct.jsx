@@ -19,9 +19,9 @@ const EditProduct = () => {
     };
 
     useEffect(() => {
-        const fetchProduct = async () => {
+        const fetchProduct = async (productId) => {
             try {
-                const res = await axios.get(`${VITE_BASE_URL}/api/products/${productId}`);
+                const res = await axios.get(`${VITE_BASE_URL}/api/product/${productId}`);
                 setProduct(res.data);
             } catch (error) {
                 console.error(error);
@@ -35,7 +35,7 @@ const EditProduct = () => {
         try {
           console.log('Updating product with ID:', productId); 
           await axios.put(
-            `${VITE_BASE_URL}/api/products/${productId}`,
+            `${VITE_BASE_URL}/api/product/${productId}`,
             product
           );
           navigate('/');

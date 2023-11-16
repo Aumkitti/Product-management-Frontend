@@ -12,8 +12,8 @@ const Product = ({ product }) => {
             
           maxWidth: '30%',
           height: '300px',
-          border: '4px solid #ccc', // เพิ่มกรอบ
-          borderRadius: '8px' // เพิ่มขอบมนเรนเนอร์
+          border: '4px solid #ccc', 
+          borderRadius: '8px' 
         }}
       />
         <p>{product.details}</p>

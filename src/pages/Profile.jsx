@@ -2,6 +2,11 @@ import { useAuthContext } from "../context/AuthContext"
 
 const Profile = () => {
     const { user } = useAuthContext();
+    // ตรวจสอบว่า user ไม่เป็น null
+    if (!user) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className="container">
             <div className="row">

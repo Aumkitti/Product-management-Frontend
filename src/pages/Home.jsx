@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Categories from "../components/Categories";
 import { VITE_BASE_URL } from "../App";
 import Product from "./Product"; 
+import Card from "../components/Card";
 
 
 
@@ -61,13 +62,6 @@ const HomePage = () => {
             </Link>
           ))}
         </div> 
-        <br />
-        <div style={{ textAlign: 'center' }}>
-          <Link to="/add" className="btn btn-warning" style={{ fontSize: '1rem', padding: '10px 20px' }}>
-            Create a Product
-          </Link>
-        </div>  
-  
       </div>
     </div>
   );

@@ -1,5 +1,3 @@
-// ProductPage.jsx
-
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
@@ -8,24 +6,28 @@ import { VITE_BASE_URL } from "../App";
 const ProductPage = () => {
   const { id: productId } = useParams();
   const [product, setProduct] = useState(null);
-  const baseUrl = VITE_BASE_URL;
 
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/api/products`);
+        console.log('productId:', productId);
+        const response = await axios.get(`${VITE_BASE_URL}/api/product/`);
         setProduct(response.data);
       } catch (error) {
         console.error(error);
       }
     };
-
+  
     getProduct();
-  }, [baseUrl, productId]);
+  }, [VITE_BASE_URL, productId]);
+  
+  
+
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${baseUrl}/api/product/${productId}`);
+      console.log('Deleting product with productId:', productId)
+      await axios.delete(`${VITE_BASE_URL}/api/product/${productId}`);
       // Redirect to homepage or other page after deletion
     } catch (error) {
       console.error(error);

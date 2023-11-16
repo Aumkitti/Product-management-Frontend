@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { VITE_BASE_URL } from '../App';
 import { useNavigate } from 'react-router-dom';
 import AuthService from '../service/auth.service';
 

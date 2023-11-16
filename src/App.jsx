@@ -28,7 +28,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/product/:productId/edit" element={<EditProduct />} />
-
+        <Route path='/profile' element={<Profile/>} />
+        <Route path='/logout' element = {<Logout/>} />
       </Routes>
     </BrowserRouter>
     </AuthProvider>
